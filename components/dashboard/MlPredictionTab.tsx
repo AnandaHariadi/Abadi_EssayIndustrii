@@ -58,9 +58,9 @@ export default function MlPredictionTab() {
               >
                 <option value="BATOK_KELAPA">Batok Kelapa (Coconut Shell) - Lignin 36%, Cellulose 42%</option>
                 <option value="SEKAM_PADI">Sekam Padi (Rice Husk) - Silica 20%, Cellulose 38%</option>
-                <option value="TONGKOL_JAGUNG">Tongkol Jagung (Corn Cob) - Hemicellulose 35%, Lignin 18%</option>
                 <option value="SERBUK_KAYU">Serbuk Kayu Gergaji (Sawdust) - Cellulose 45%, Lignin 28%</option>
-                <option value="TANDAN_KOSONG_SAWIT">Tandan Kosong Kelapa Sawit (EFB) - Lignin 28%, Fiber 52%</option>
+                <option value="AMPAS_TEBU">Ampas Tebu (Bagasse) - Hemicellulose 30%, Lignin 22%</option>
+                <option value="CANGKANG_SAWIT">Cangkang Kelapa Sawit - Lignin 45%, Fiber 48%</option>
               </select>
             </div>
 
@@ -138,7 +138,7 @@ export default function MlPredictionTab() {
               <div className="grid grid-cols-3 gap-2">
                 {[
                   { id: 'MAX_BIOCHAR', label: 'Biochar Max' },
-                  { id: 'MAX_BIO_OIL', label: 'Bio-Oil Max' },
+                  { id: 'MAX_BIOOIL', label: 'Bio-Oil Max' },
                   { id: 'BALANCED', label: 'Seimbang' },
                 ].map((obj) => (
                   <button
@@ -168,28 +168,28 @@ export default function MlPredictionTab() {
             
             <div className="p-5 rounded-3xl bg-white border border-slate-200 shadow-lg space-y-1.5">
               <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 font-mono">Hasil Biochar (Padat)</span>
-              <p className="text-3xl font-extrabold font-heading text-blue-600">{prediction.predictedBiocharKg} <span className="text-base font-bold text-slate-700">kg</span></p>
-              <p className="text-xs text-slate-500 font-medium">{prediction.biocharYieldPercent}% dari umpan biomassa total</p>
+              <p className="text-3xl font-extrabold font-heading text-blue-600">{prediction.yieldBiocharKg} <span className="text-base font-bold text-slate-700">kg</span></p>
+              <p className="text-xs text-slate-500 font-medium">{prediction.yieldBiocharPercent}% dari umpan biomassa total</p>
               <div className="w-full bg-slate-100 h-2 rounded-full mt-2 overflow-hidden">
-                <div className="bg-blue-600 h-full rounded-full" style={{ width: `${prediction.biocharYieldPercent}%` }} />
+                <div className="bg-blue-600 h-full rounded-full" style={{ width: `${prediction.yieldBiocharPercent}%` }} />
               </div>
             </div>
 
             <div className="p-5 rounded-3xl bg-white border border-slate-200 shadow-lg space-y-1.5">
               <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 font-mono">Hasil Bio-Oil (Cair)</span>
-              <p className="text-3xl font-extrabold font-heading text-indigo-600">{prediction.predictedBioOilLiters} <span className="text-base font-bold text-slate-700">L</span></p>
-              <p className="text-xs text-slate-500 font-medium">{prediction.bioOilYieldPercent}% dari umpan biomassa total</p>
+              <p className="text-3xl font-extrabold font-heading text-indigo-600">{prediction.yieldBioOilLiters} <span className="text-base font-bold text-slate-700">L</span></p>
+              <p className="text-xs text-slate-500 font-medium">{prediction.yieldBioOilPercent}% dari umpan biomassa total</p>
               <div className="w-full bg-slate-100 h-2 rounded-full mt-2 overflow-hidden">
-                <div className="bg-indigo-600 h-full rounded-full" style={{ width: `${prediction.bioOilYieldPercent}%` }} />
+                <div className="bg-indigo-600 h-full rounded-full" style={{ width: `${prediction.yieldBioOilPercent}%` }} />
               </div>
             </div>
 
             <div className="p-5 rounded-3xl bg-white border border-slate-200 shadow-lg space-y-1.5">
               <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 font-mono">Energi Syngas (Gas)</span>
-              <p className="text-3xl font-extrabold font-heading text-slate-900">{prediction.predictedSyngasKwh} <span className="text-base font-bold text-blue-600">kWh</span></p>
-              <p className="text-xs text-slate-500 font-medium">{prediction.syngasVolumeM3} m³ gas pirolisis bersih</p>
+              <p className="text-3xl font-extrabold font-heading text-slate-900">{prediction.syngasEnergyKwh} <span className="text-base font-bold text-blue-600">kWh</span></p>
+              <p className="text-xs text-slate-500 font-medium">{prediction.yieldSyngasM3} m³ gas pirolisis bersih</p>
               <div className="w-full bg-slate-100 h-2 rounded-full mt-2 overflow-hidden">
-                <div className="bg-slate-800 h-full rounded-full" style={{ width: `${prediction.syngasYieldPercent}%` }} />
+                <div className="bg-slate-800 h-full rounded-full" style={{ width: `${prediction.yieldSyngasPercent}%` }} />
               </div>
             </div>
 
@@ -204,12 +204,12 @@ export default function MlPredictionTab() {
             </div>
             <div className="space-y-1 border-r border-slate-100 px-2">
               <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block font-mono">Nilai Kalor Biochar (HHV)</span>
-              <span className="text-2xl font-extrabold font-heading text-blue-600">{prediction.heatingValueMjKg} MJ/kg</span>
+              <span className="text-2xl font-extrabold font-heading text-blue-600">{prediction.calorificValueMJkg} MJ/kg</span>
               <span className="text-[10px] text-slate-400 block font-medium">Kepadatan Energi Padat</span>
             </div>
             <div className="space-y-1 pl-2">
               <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block font-mono">CO2e Terfiksasi Permanen</span>
-              <span className="text-2xl font-extrabold font-heading text-emerald-600">+{prediction.co2SequestratedKg} kg</span>
+              <span className="text-2xl font-extrabold font-heading text-emerald-600">+{prediction.co2SequestrationKg} kg</span>
               <span className="text-[10px] text-slate-400 block font-medium">Sertifikasi ISO 14064</span>
             </div>
           </div>
