@@ -50,3 +50,22 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 .animate-pulse-orange {
   animation: pulse-orange 2s infinite;
 }
+
+/* 3D Rotation Animation - Machine Rotates Back and Forth Side to Side in Place */
+@keyframes rotateSway {
+  0% {
+    transform: perspective(1000px) rotateY(-18deg) rotateX(2deg) translateY(0px);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(18deg) rotateX(-2deg) translateY(-10px);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(-18deg) rotateX(2deg) translateY(0px);
+  }
+}
+
+.animate-rotate-sway {
+  animation: rotateSway 7s ease-in-out infinite;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
