@@ -1,12 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import {
-  LayoutDashboard, Activity, Database, BrainCircuit, MapPin, Leaf,
-  Award, ShoppingBag, User, LogOut, Menu, X,
-  Users, Wrench, GraduationCap
-} from 'lucide-react';
 
 import { generateInitialTelemetryData, generateSingleNextTick, IoTSensorReading } from '@/lib/iotSimulation';
 import OverviewTab from '@/components/dashboard/OverviewTab';
@@ -47,9 +41,6 @@ const getInitialRoleConfig = () => {
 };
 
 export default function DashboardPage() {
-  const router = useRouter();
-
-  // Initialize state synchronously with exact URL role to eliminate hydration flash completely
   const [initialConfig] = useState(getInitialRoleConfig);
   const [roleType, setRoleType] = useState<'community' | 'operator' | 'researcher'>(initialConfig.type);
   const [activeTab, setActiveTab] = useState<string>(initialConfig.tab);
@@ -71,7 +62,6 @@ export default function DashboardPage() {
         return;
       }
 
-      // Synchronize role storage
       localStorage.setItem('abadi_user_role', userRole);
     }
   }, [userRole]);
@@ -108,36 +98,36 @@ export default function DashboardPage() {
     reactorStatus: 'ACTIVE_PYROLYSIS',
   };
 
-  // Nav items customized per role with Lucide Icons (Zero Emojis)
+  // Nav items customized per role (100% Pure Clean Text - ZERO ICONS)
   const getNavItems = () => {
     if (roleType === 'community') {
       return [
-        { id: 'points', label: 'Poin Hijau & Hadiah Tani', icon: Award },
-        { id: 'circular', label: 'Pasar Sirkular Biochar & Forum', icon: ShoppingBag },
-        { id: 'impact', label: 'Dampak Lingkungan Desa', icon: Leaf },
-        { id: 'map', label: 'Peta Sebaran Reaktor Desa', icon: MapPin },
-        { id: 'profile', label: 'Profil Pengguna Tani', icon: User },
+        { id: 'points', label: 'Poin Hijau & Hadiah Tani' },
+        { id: 'circular', label: 'Pasar Sirkular Biochar & Forum' },
+        { id: 'impact', label: 'Dampak Lingkungan Desa' },
+        { id: 'map', label: 'Peta Sebaran Reaktor Desa' },
+        { id: 'profile', label: 'Profil Pengguna Tani' },
       ];
     } else if (roleType === 'operator') {
       return [
-        { id: 'monitoring', label: 'Live Telemetri Sensor Reaktor', icon: Activity },
-        { id: 'history', label: 'Riwayat Batch Produksi', icon: Database },
-        { id: 'map', label: 'Peta Sebaran Status Node', icon: MapPin },
-        { id: 'overview', label: 'Dasbor Ringkasan Teknis', icon: LayoutDashboard },
-        { id: 'profile', label: 'Profil & Perangkat Sensor', icon: User },
+        { id: 'monitoring', label: 'Live Telemetri Sensor Reaktor' },
+        { id: 'history', label: 'Riwayat Batch Produksi' },
+        { id: 'map', label: 'Peta Sebaran Status Node' },
+        { id: 'overview', label: 'Dasbor Ringkasan Teknis' },
+        { id: 'profile', label: 'Profil & Perangkat Sensor' },
       ];
     } else {
       return [
-        { id: 'ml', label: 'Kalkulator Random Forest ML', icon: BrainCircuit },
-        { id: 'impact', label: 'Analitik Dampak Karbon & ESG', icon: Leaf },
-        { id: 'history', label: 'Dataset Batch & Thermogravimetric', icon: Database },
-        { id: 'circular', label: 'Forum Riset & Ekonomi Sirkular', icon: ShoppingBag },
-        { id: 'profile', label: 'Profil Peneliti & Model AI', icon: User },
+        { id: 'ml', label: 'Kalkulator Random Forest ML' },
+        { id: 'impact', label: 'Analitik Dampak Karbon & ESG' },
+        { id: 'history', label: 'Dataset Batch & Thermogravimetric' },
+        { id: 'circular', label: 'Forum Riset & Ekonomi Sirkular' },
+        { id: 'profile', label: 'Profil Peneliti & Model AI' },
       ];
     }
   };
 
-  // Dynamic Theme Styling Per Role (Zero Emojis)
+  // Dynamic Theme Styling Per Role (Zero Component Icons)
   const getRoleHeaderStyle = () => {
     if (roleType === 'community') {
       return 'bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white';
@@ -151,14 +141,14 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
       
-      {/* Dynamic Role Top Navbar with Official Emblem */}
+      {/* Top Navbar */}
       <header className={`h-16 sticky top-0 z-30 px-4 sm:px-6 flex items-center justify-between shadow-md ${getRoleHeaderStyle()}`}>
         <div className="flex items-center gap-3">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="lg:hidden p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white"
+            className="lg:hidden px-3 py-1.5 rounded-xl bg-white/10 text-white text-xs font-bold"
           >
-            {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            MENU
           </button>
 
           <button
@@ -177,7 +167,7 @@ export default function DashboardPage() {
           </button>
         </div>
 
-        {/* Dynamic User Badge & Actions */}
+        {/* User Role Info & Logout */}
         <div className="flex items-center gap-3">
           <div className="hidden md:flex flex-col text-right">
             <span className="text-xs font-bold text-white">{userRole}</span>
@@ -190,23 +180,20 @@ export default function DashboardPage() {
             </span>
           </div>
 
-          <span className="px-3 py-1 rounded-xl text-xs font-bold font-mono bg-white/15 text-white border border-white/20 backdrop-blur-md flex items-center gap-1.5">
-            {roleType === 'community' ? <Users className="w-3.5 h-3.5" /> : roleType === 'operator' ? <Wrench className="w-3.5 h-3.5" /> : <GraduationCap className="w-3.5 h-3.5" />}
-            <span>{roleType === 'community' ? 'Peran Masyarakat' : roleType === 'operator' ? 'Peran Operator' : 'Peran Peneliti'}</span>
+          <span className="px-3.5 py-1.5 rounded-xl text-xs font-bold font-mono bg-white/15 text-white border border-white/20 backdrop-blur-md">
+            {roleType === 'community' ? 'PERAN MASYARAKAT' : roleType === 'operator' ? 'PERAN OPERATOR' : 'PERAN PENELITI'}
           </span>
 
           <button
             onClick={handleLogout}
-            title="Keluar Sesi"
-            className="p-2 rounded-xl bg-white/10 hover:bg-red-500/20 text-white border border-white/20 transition-colors flex items-center gap-1.5 text-xs font-bold cursor-pointer"
+            className="px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-red-500/20 text-white border border-white/20 transition-colors text-xs font-bold cursor-pointer"
           >
-            <LogOut className="w-4 h-4" />
-            <span className="hidden sm:inline">Keluar</span>
+            Keluar
           </button>
         </div>
       </header>
 
-      {/* Dynamic Role Specific Banner Top */}
+      {/* Role Banner */}
       <div className={`p-6 border-b shadow-sm ${
         roleType === 'community'
           ? 'bg-emerald-50 border-emerald-200 text-emerald-950'
@@ -218,15 +205,10 @@ export default function DashboardPage() {
           
           {roleType === 'community' && (
             <>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-500 text-white flex items-center justify-center font-bold shadow-md">
-                  <Users className="w-6 h-6" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-700">SUBANG COMMUNITY HUB</span>
-                  <h2 className="text-xl font-extrabold font-heading text-emerald-950">Selamat Datang, Bapak/Ibu Petani & Masyarakat Desa!</h2>
-                  <p className="text-xs text-emerald-800">Kumpulkan Poin Hijau dari setoran limbah biomassa & tukarkan dengan pupuk biochar hayati gratis.</p>
-                </div>
+              <div>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-700">SUBANG COMMUNITY HUB</span>
+                <h2 className="text-xl font-extrabold font-heading text-emerald-950">Selamat Datang, Bapak/Ibu Petani & Masyarakat Desa!</h2>
+                <p className="text-xs text-emerald-800 mt-0.5">Kumpulkan Poin Hijau dari setoran limbah biomassa & tukarkan dengan pupuk biochar hayati gratis.</p>
               </div>
               <div className="flex items-center gap-3">
                 <div className="px-4 py-2 rounded-2xl bg-white border border-emerald-300 shadow-sm text-center">
@@ -242,23 +224,15 @@ export default function DashboardPage() {
 
           {roleType === 'operator' && (
             <>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-orange-500 text-white flex items-center justify-center font-bold shadow-md">
-                  <Wrench className="w-6 h-6" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-orange-400">HARDWARE TELEMETRY COMMAND</span>
-                  <h2 className="text-xl font-extrabold font-heading text-white">Stasiun Kontrol Reaktor Subang #01</h2>
-                  <p className="text-xs text-slate-300">Pantau fluktuasi suhu reaktor pirolisis, barometer BMP280, & deteksi gas syngas MQ-135 real-time.</p>
-                </div>
+              <div>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-orange-400">HARDWARE TELEMETRY COMMAND</span>
+                <h2 className="text-xl font-extrabold font-heading text-white">Stasiun Kontrol Reaktor Subang #01</h2>
+                <p className="text-xs text-slate-300 mt-0.5">Pantau fluktuasi suhu reaktor pirolisis, barometer BMP280, & deteksi gas syngas MQ-135 real-time.</p>
               </div>
               <div className="flex items-center gap-3">
                 <div className="px-4 py-2 rounded-2xl bg-slate-800 border border-slate-700 shadow-sm text-center">
                   <span className="text-[10px] font-bold text-slate-400 uppercase block">Status Hardware</span>
-                  <span className="text-xs font-extrabold text-emerald-400 font-mono flex items-center gap-1">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                    ONLINE (442.0°C)
-                  </span>
+                  <span className="text-xs font-extrabold text-emerald-400 font-mono">ONLINE (442.0°C)</span>
                 </div>
                 <button onClick={() => setActiveTab('monitoring')} className="px-4 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs shadow-md cursor-pointer">
                   Buka Monitoring Live
@@ -269,15 +243,10 @@ export default function DashboardPage() {
 
           {roleType === 'researcher' && (
             <>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center font-bold shadow-md">
-                  <GraduationCap className="w-6 h-6" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-amber-300">AI R&D LABORATORY</span>
-                  <h2 className="text-xl font-extrabold font-heading text-white">Laboratorium Riset Biomassa & Machine Learning</h2>
-                  <p className="text-xs text-indigo-200">Simulasikan model Random Forest Regression (100 Decision Trees) untuk memprediksi yield biochar & bio-oil.</p>
-                </div>
+              <div>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-amber-300">AI R&D LABORATORY</span>
+                <h2 className="text-xl font-extrabold font-heading text-white">Laboratorium Riset Biomassa & Machine Learning</h2>
+                <p className="text-xs text-indigo-200 mt-0.5">Simulasikan model Random Forest Regression (100 Decision Trees) untuk memprediksi yield biochar & bio-oil.</p>
               </div>
               <div className="flex items-center gap-3">
                 <div className="px-4 py-2 rounded-2xl bg-indigo-900 border border-indigo-700 shadow-sm text-center">
@@ -294,20 +263,19 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Main Workspace with Role-Specific Sidebar */}
+      {/* Main Content Workspace */}
       <div className="flex-1 flex overflow-hidden">
         
-        {/* Left Sidebar */}
+        {/* Sidebar Navigation - 100% CLEAN TEXT, NO ICONS */}
         <aside className={`fixed lg:static inset-y-0 left-0 z-20 w-64 bg-white border-r border-slate-200 transform ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         } lg:translate-x-0 transition-transform duration-200 ease-in-out flex flex-col justify-between p-4 top-16 lg:top-0`}>
           
           <div className="space-y-1">
             <p className="text-[10px] uppercase font-bold text-slate-400 font-mono px-3 mb-2">
-              Menu Khusus Peran {roleType === 'community' ? 'Masyarakat' : roleType === 'operator' ? 'Operator' : 'Peneliti'}
+              MENU KHUSUS PERAN {roleType === 'community' ? 'MASYARAKAT' : roleType === 'operator' ? 'OPERATOR' : 'PENELITI'}
             </p>
             {getNavItems().map((item) => {
-              const Icon = item.icon;
               const isActive = activeTab === item.id;
               return (
                 <button
@@ -316,36 +284,34 @@ export default function DashboardPage() {
                     setActiveTab(item.id);
                     setSidebarOpen(false);
                   }}
-                  className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all text-left cursor-pointer ${
+                  className={`w-full text-left px-4 py-3 rounded-2xl text-xs font-extrabold transition-all cursor-pointer ${
                     isActive
                       ? roleType === 'community'
-                        ? 'bg-emerald-600 text-white shadow-md shadow-emerald-500/20'
+                        ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20'
                         : roleType === 'operator'
                         ? 'bg-orange-500 text-white shadow-md shadow-orange-500/20'
-                        : 'bg-indigo-900 text-white shadow-md shadow-indigo-500/20'
-                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                        : 'bg-indigo-900 text-white shadow-md shadow-indigo-900/20'
+                      : 'text-slate-700 hover:bg-slate-100'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-500'}`} />
-                  <span className="truncate">{item.label}</span>
+                  <span className="truncate block font-heading">{item.label}</span>
                 </button>
               );
             })}
           </div>
 
-          <div className={`p-3.5 rounded-2xl border space-y-1 ${
+          <div className={`p-4 rounded-2xl border space-y-1 ${
             roleType === 'community'
               ? 'bg-emerald-50 border-emerald-200 text-emerald-950'
               : roleType === 'operator'
               ? 'bg-slate-900 border-slate-800 text-white'
               : 'bg-indigo-950 border-indigo-900 text-white'
           }`}>
-            <p className="text-[10px] font-bold uppercase opacity-80">Tampilan Spesialis</p>
+            <p className="text-[10px] font-bold uppercase opacity-80 font-mono">TAMPILAN SPESIALIS</p>
             <p className="text-xs font-extrabold font-heading">
               {roleType === 'community' ? 'Program Insentif Tani' : roleType === 'operator' ? 'Subang Node #01 Active' : 'Random Forest Model v2.4'}
             </p>
-            <p className="text-[11px] font-mono font-bold flex items-center gap-1 mt-1 text-emerald-400">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+            <p className="text-[10px] font-mono font-bold mt-1 text-emerald-400">
               SISTEM INTERAKTIF READY
             </p>
           </div>
