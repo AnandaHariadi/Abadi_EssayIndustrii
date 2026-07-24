@@ -127,7 +127,6 @@ export default function DashboardPage() {
     }
   };
 
-  // Dynamic Theme Styling Per Role (Zero Component Icons)
   const getRoleHeaderStyle = () => {
     if (roleType === 'community') {
       return 'bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white';
@@ -139,28 +138,28 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans overflow-x-hidden">
       
-      {/* Top Navbar */}
-      <header className={`h-16 sticky top-0 z-30 px-4 sm:px-6 flex items-center justify-between shadow-md ${getRoleHeaderStyle()}`}>
-        <div className="flex items-center gap-3">
+      {/* Top Navbar Mobile Optimized */}
+      <header className={`h-16 sticky top-0 z-30 px-3 sm:px-6 flex items-center justify-between shadow-md ${getRoleHeaderStyle()}`}>
+        <div className="flex items-center gap-2 sm:gap-3">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="lg:hidden px-3 py-1.5 rounded-xl bg-white/10 text-white text-xs font-bold"
+            className="lg:hidden px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all border border-white/20"
           >
-            MENU
+            {sidebarOpen ? 'TUTUP' : 'MENU'}
           </button>
 
           <button
             onClick={() => window.location.href = '/'}
-            className="flex items-center gap-3 group cursor-pointer"
+            className="flex items-center gap-2 sm:gap-3 group cursor-pointer"
           >
-            <img src="/abadi-emblem.png" alt="Logo ABADI" className="w-9 h-9 object-contain" />
-            <div className="hidden sm:flex flex-col text-left">
-              <span className="text-base font-extrabold font-heading text-white leading-none">
+            <img src="/abadi-emblem.png" alt="Logo ABADI" className="w-8 h-8 sm:w-9 sm:h-9 object-contain" />
+            <div className="flex flex-col text-left">
+              <span className="text-sm sm:text-base font-extrabold font-heading text-white leading-none">
                 ABADI<span className="text-amber-300">.</span>
               </span>
-              <span className="text-[10px] text-white/80 font-semibold tracking-wider uppercase mt-0.5">
+              <span className="text-[9px] sm:text-[10px] text-white/80 font-semibold tracking-wider uppercase mt-0.5">
                 Eco-Tech Biomassa
               </span>
             </div>
@@ -168,33 +167,22 @@ export default function DashboardPage() {
         </div>
 
         {/* User Role Info & Logout */}
-        <div className="flex items-center gap-3">
-          <div className="hidden md:flex flex-col text-right">
-            <span className="text-xs font-bold text-white">{userRole}</span>
-            <span className="text-[10px] text-amber-200 font-mono font-bold uppercase">
-              {roleType === 'community'
-                ? 'AKSES: INSENTIF & PASAR SIRKULAR'
-                : roleType === 'operator'
-                ? 'AKSES: LIVE MONITORING TELEMETRI'
-                : 'AKSES: PREDIKSI RANDOM FOREST ML'}
-            </span>
-          </div>
-
-          <span className="px-3.5 py-1.5 rounded-xl text-xs font-bold font-mono bg-white/15 text-white border border-white/20 backdrop-blur-md">
-            {roleType === 'community' ? 'PERAN MASYARAKAT' : roleType === 'operator' ? 'PERAN OPERATOR' : 'PERAN PENELITI'}
+        <div className="flex items-center gap-2 sm:gap-3">
+          <span className="hidden sm:inline-block px-3 py-1.5 rounded-xl text-xs font-bold font-mono bg-white/15 text-white border border-white/20 backdrop-blur-md">
+            {roleType === 'community' ? 'MASYARAKAT' : roleType === 'operator' ? 'OPERATOR' : 'PENELITI'}
           </span>
 
           <button
             onClick={handleLogout}
-            className="px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-red-500/20 text-white border border-white/20 transition-colors text-xs font-bold cursor-pointer"
+            className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-red-500/20 text-white border border-white/20 transition-colors text-xs font-bold cursor-pointer"
           >
             Keluar
           </button>
         </div>
       </header>
 
-      {/* Role Banner */}
-      <div className={`p-6 border-b shadow-sm ${
+      {/* Role Banner Mobile Optimized */}
+      <div className={`p-4 sm:p-6 border-b shadow-sm ${
         roleType === 'community'
           ? 'bg-emerald-50 border-emerald-200 text-emerald-950'
           : roleType === 'operator'
@@ -207,13 +195,13 @@ export default function DashboardPage() {
             <>
               <div>
                 <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-700">SUBANG COMMUNITY HUB</span>
-                <h2 className="text-xl font-extrabold font-heading text-emerald-950">Selamat Datang, Bapak/Ibu Petani & Masyarakat Desa!</h2>
+                <h2 className="text-lg sm:text-xl font-extrabold font-heading text-emerald-950">Selamat Datang, Bapak/Ibu Petani & Masyarakat Desa!</h2>
                 <p className="text-xs text-emerald-800 mt-0.5">Kumpulkan Poin Hijau dari setoran limbah biomassa & tukarkan dengan pupuk biochar hayati gratis.</p>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start">
                 <div className="px-4 py-2 rounded-2xl bg-white border border-emerald-300 shadow-sm text-center">
                   <span className="text-[10px] font-bold text-slate-500 uppercase block">Saldo Poin Hijau</span>
-                  <span className="text-lg font-extrabold text-emerald-600 font-mono">1,450 PTS</span>
+                  <span className="text-base sm:text-lg font-extrabold text-emerald-600 font-mono">1,450 PTS</span>
                 </div>
                 <button onClick={() => setActiveTab('points')} className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md cursor-pointer">
                   Tukarkan Hadiah
@@ -226,16 +214,16 @@ export default function DashboardPage() {
             <>
               <div>
                 <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-orange-400">HARDWARE TELEMETRY COMMAND</span>
-                <h2 className="text-xl font-extrabold font-heading text-white">Stasiun Kontrol Reaktor Subang #01</h2>
+                <h2 className="text-lg sm:text-xl font-extrabold font-heading text-white">Stasiun Kontrol Reaktor Subang #01</h2>
                 <p className="text-xs text-slate-300 mt-0.5">Pantau fluktuasi suhu reaktor pirolisis, barometer BMP280, & deteksi gas syngas MQ-135 real-time.</p>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start">
                 <div className="px-4 py-2 rounded-2xl bg-slate-800 border border-slate-700 shadow-sm text-center">
                   <span className="text-[10px] font-bold text-slate-400 uppercase block">Status Hardware</span>
                   <span className="text-xs font-extrabold text-emerald-400 font-mono">ONLINE (442.0°C)</span>
                 </div>
                 <button onClick={() => setActiveTab('monitoring')} className="px-4 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs shadow-md cursor-pointer">
-                  Buka Monitoring Live
+                  Monitoring Live
                 </button>
               </div>
             </>
@@ -245,16 +233,16 @@ export default function DashboardPage() {
             <>
               <div>
                 <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-amber-300">AI R&D LABORATORY</span>
-                <h2 className="text-xl font-extrabold font-heading text-white">Laboratorium Riset Biomassa & Machine Learning</h2>
+                <h2 className="text-lg sm:text-xl font-extrabold font-heading text-white">Laboratorium Riset Biomassa & Machine Learning</h2>
                 <p className="text-xs text-indigo-200 mt-0.5">Simulasikan model Random Forest Regression (100 Decision Trees) untuk memprediksi yield biochar & bio-oil.</p>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start">
                 <div className="px-4 py-2 rounded-2xl bg-indigo-900 border border-indigo-700 shadow-sm text-center">
                   <span className="text-[10px] font-bold text-indigo-200 uppercase block">Akurasi Model ML</span>
                   <span className="text-xs font-extrabold text-amber-300 font-mono">R² = 0.948 (94.8%)</span>
                 </div>
                 <button onClick={() => setActiveTab('ml')} className="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs shadow-md cursor-pointer">
-                  Jalankan Simulasi ML
+                  Simulasi ML
                 </button>
               </div>
             </>
@@ -264,17 +252,34 @@ export default function DashboardPage() {
       </div>
 
       {/* Main Content Workspace */}
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 flex overflow-hidden relative">
         
-        {/* Sidebar Navigation - 100% CLEAN TEXT, NO ICONS */}
-        <aside className={`fixed lg:static inset-y-0 left-0 z-20 w-64 bg-white border-r border-slate-200 transform ${
+        {/* Mobile Backdrop Overlay */}
+        {sidebarOpen && (
+          <div
+            onClick={() => setSidebarOpen(false)}
+            className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-30 lg:hidden"
+          />
+        )}
+
+        {/* Sidebar Navigation - Mobile Drawer & Desktop Sidebar */}
+        <aside className={`fixed lg:static inset-y-0 left-0 z-40 w-72 lg:w-64 bg-white border-r border-slate-200 transform ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } lg:translate-x-0 transition-transform duration-200 ease-in-out flex flex-col justify-between p-4 top-16 lg:top-0`}>
+        } lg:translate-x-0 transition-transform duration-200 ease-in-out flex flex-col justify-between p-4 top-16 lg:top-0 h-[calc(100vh-4rem)] lg:h-auto shadow-2xl lg:shadow-none`}>
           
           <div className="space-y-1">
-            <p className="text-[10px] uppercase font-bold text-slate-400 font-mono px-3 mb-2">
-              MENU KHUSUS PERAN {roleType === 'community' ? 'MASYARAKAT' : roleType === 'operator' ? 'OPERATOR' : 'PENELITI'}
-            </p>
+            <div className="flex items-center justify-between px-3 mb-3 lg:mb-2">
+              <p className="text-[10px] uppercase font-bold text-slate-400 font-mono">
+                MENU KHUSUS PERAN {roleType === 'community' ? 'MASYARAKAT' : roleType === 'operator' ? 'OPERATOR' : 'PENELITI'}
+              </p>
+              <button
+                onClick={() => setSidebarOpen(false)}
+                className="lg:hidden text-xs font-bold text-slate-500 px-2 py-0.5 rounded bg-slate-100"
+              >
+                X
+              </button>
+            </div>
+
             {getNavItems().map((item) => {
               const isActive = activeTab === item.id;
               return (
@@ -319,7 +324,7 @@ export default function DashboardPage() {
         </aside>
 
         {/* Main Workspace Area */}
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+        <main className="flex-1 overflow-y-auto p-3 sm:p-6 lg:p-8 w-full max-w-full">
           {activeTab === 'points' && <GreenPointsTab />}
           {activeTab === 'monitoring' && <RealtimeMonitoringTab telemetryHistory={telemetryHistory} />}
           {activeTab === 'ml' && <MlPredictionTab />}
