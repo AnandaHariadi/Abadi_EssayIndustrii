@@ -77,7 +77,7 @@ export default function HeroSection({ onOpenAuthModal, onExploreFeatures }: Hero
 
           </div>
 
-          {/* Right Column: 3D Rotating Stainless Steel ABADI Reactor Machine */}
+          {/* Right Column: 3D Rotating Stainless Steel ABADI Fix Reactor Machine */}
           <div className="lg:col-span-6 flex justify-center items-center relative py-8">
             
             {/* Background Glow */}
@@ -101,10 +101,10 @@ export default function HeroSection({ onOpenAuthModal, onExploreFeatures }: Hero
                 <span className="text-xs font-extrabold font-mono text-white">YIELD BIOCHAR: 37.0%</span>
               </div>
 
-              {/* Reactor Image with 3D Side-to-Side Sway Rotation */}
+              {/* Fix Reactor Image with 3D Side-to-Side Sway Rotation */}
               <img
-                src="/reaktor-abadi-v2.png"
-                alt="Reaktor Pirolisis ABADI Cerdas"
+                src="/reaktor-abadi-v3.png"
+                alt="Reaktor Pirolisis ABADI Fix Cerdas"
                 className="w-[280px] sm:w-[380px] md:w-[440px] h-auto object-contain animate-rotate-sway drop-shadow-2xl cursor-pointer"
               />
 
