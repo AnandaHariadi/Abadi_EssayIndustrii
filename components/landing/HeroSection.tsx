@@ -77,17 +77,17 @@ export default function HeroSection({ onOpenAuthModal, onExploreFeatures }: Hero
 
           </div>
 
-          {/* Right Column: 3D Rotating Stainless Steel ABADI Fix Reactor Machine */}
-          <div className="lg:col-span-6 flex justify-center items-center relative py-8">
+          {/* Right Column: Larger & Shifted Right 3D Rotating ABADI Reactor Machine */}
+          <div className="lg:col-span-6 flex justify-center lg:justify-end items-center relative py-6 lg:pr-2">
             
             {/* Background Glow */}
-            <div className="absolute w-[300px] sm:w-[420px] h-[300px] sm:h-[420px] bg-gradient-to-tr from-orange-400/20 via-amber-300/20 to-orange-500/10 rounded-full blur-3xl -z-10 pointer-events-none" />
+            <div className="absolute w-[340px] sm:w-[480px] h-[340px] sm:h-[480px] bg-gradient-to-tr from-orange-400/20 via-amber-300/20 to-orange-500/10 rounded-full blur-3xl -z-10 pointer-events-none" />
 
             {/* Reactor Container with 3D Rotate Sway Animation */}
-            <div className="relative group flex items-center justify-center">
+            <div className="relative group flex items-center justify-center transform translate-x-2 sm:translate-x-6 lg:translate-x-10">
               
               {/* Floating Status Badge Top Left */}
-              <div className="absolute top-2 -left-2 sm:-left-6 z-20 px-3.5 py-2 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl text-left hidden sm:block">
+              <div className="absolute -top-4 -left-4 sm:-left-12 z-20 px-4 py-2 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl text-left hidden sm:block">
                 <span className="text-[9px] font-mono font-bold text-slate-400 uppercase block">NODE SUBANG #01</span>
                 <span className="text-xs font-extrabold text-emerald-600 font-mono flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
@@ -96,16 +96,16 @@ export default function HeroSection({ onOpenAuthModal, onExploreFeatures }: Hero
               </div>
 
               {/* Floating Status Badge Bottom Right */}
-              <div className="absolute bottom-4 -right-2 sm:-right-6 z-20 px-4 py-2.5 rounded-2xl bg-slate-900 text-white border border-slate-800 shadow-2xl text-left hidden sm:block">
+              <div className="absolute -bottom-2 -right-4 sm:-right-8 z-20 px-4 py-2.5 rounded-2xl bg-slate-900 text-white border border-slate-800 shadow-2xl text-left hidden sm:block">
                 <span className="text-[9px] font-mono font-bold text-orange-400 uppercase block">MODEL PREDIKSI ML</span>
                 <span className="text-xs font-extrabold font-mono text-white">YIELD BIOCHAR: 37.0%</span>
               </div>
 
-              {/* Fix Reactor Image with 3D Side-to-Side Sway Rotation */}
+              {/* Fix Reactor Image - Larger Size & Positioned Right */}
               <img
                 src="/reaktor-abadi-v3.png"
                 alt="Reaktor Pirolisis ABADI Fix Cerdas"
-                className="w-[280px] sm:w-[380px] md:w-[440px] h-auto object-contain animate-rotate-sway drop-shadow-2xl cursor-pointer"
+                className="w-[320px] sm:w-[460px] md:w-[540px] lg:w-[580px] h-auto object-contain animate-rotate-sway drop-shadow-2xl cursor-pointer"
               />
 
             </div>
