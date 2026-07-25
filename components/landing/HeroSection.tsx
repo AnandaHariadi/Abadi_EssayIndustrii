@@ -24,10 +24,10 @@ export default function HeroSection({ onOpenAuthModal, onExploreFeatures }: Hero
     <section id="beranda" className="relative bg-white text-slate-900 pt-32 sm:pt-36 pb-20 sm:pb-24 border-b border-slate-100 font-sans overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           {/* Left Column: Executive Headline */}
-          <div className="lg:col-span-6 space-y-6">
+          <div className="lg:col-span-5 space-y-6">
             
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold tracking-wide">
               <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
@@ -77,17 +77,17 @@ export default function HeroSection({ onOpenAuthModal, onExploreFeatures }: Hero
 
           </div>
 
-          {/* Right Column: Larger & Shifted Right 3D Rotating ABADI Reactor Machine */}
-          <div className="lg:col-span-6 flex justify-center lg:justify-end items-center relative py-6 lg:pr-2">
+          {/* Right Column: Massive Full-Fill 3D Rotating Reactor Showcase */}
+          <div className="lg:col-span-7 flex justify-center lg:justify-end items-center relative py-4 lg:py-0">
             
             {/* Background Glow */}
-            <div className="absolute w-[340px] sm:w-[480px] h-[340px] sm:h-[480px] bg-gradient-to-tr from-orange-400/20 via-amber-300/20 to-orange-500/10 rounded-full blur-3xl -z-10 pointer-events-none" />
+            <div className="absolute w-[380px] sm:w-[560px] h-[380px] sm:h-[560px] bg-gradient-to-tr from-orange-400/20 via-amber-300/20 to-orange-500/10 rounded-full blur-3xl -z-10 pointer-events-none" />
 
             {/* Reactor Container with 3D Rotate Sway Animation */}
-            <div className="relative group flex items-center justify-center transform translate-x-2 sm:translate-x-6 lg:translate-x-10">
+            <div className="relative group flex items-center justify-end w-full">
               
               {/* Floating Status Badge Top Left */}
-              <div className="absolute -top-4 -left-4 sm:-left-12 z-20 px-4 py-2 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl text-left hidden sm:block">
+              <div className="absolute top-2 left-0 sm:left-4 z-20 px-4 py-2.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-2xl text-left hidden sm:block">
                 <span className="text-[9px] font-mono font-bold text-slate-400 uppercase block">NODE SUBANG #01</span>
                 <span className="text-xs font-extrabold text-emerald-600 font-mono flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
@@ -96,16 +96,16 @@ export default function HeroSection({ onOpenAuthModal, onExploreFeatures }: Hero
               </div>
 
               {/* Floating Status Badge Bottom Right */}
-              <div className="absolute -bottom-2 -right-4 sm:-right-8 z-20 px-4 py-2.5 rounded-2xl bg-slate-900 text-white border border-slate-800 shadow-2xl text-left hidden sm:block">
+              <div className="absolute bottom-2 right-0 sm:right-2 z-20 px-4 py-2.5 rounded-2xl bg-slate-900 text-white border border-slate-800 shadow-2xl text-left hidden sm:block">
                 <span className="text-[9px] font-mono font-bold text-orange-400 uppercase block">MODEL PREDIKSI ML</span>
                 <span className="text-xs font-extrabold font-mono text-white">YIELD BIOCHAR: 37.0%</span>
               </div>
 
-              {/* Fix Reactor Image - Larger Size & Positioned Right */}
+              {/* Fix Reactor Image - Massive Size Fill 100% Right Column */}
               <img
-                src="/reaktor-abadi-v3.png"
+                src="/reaktor-abadi-v4.png"
                 alt="Reaktor Pirolisis ABADI Fix Cerdas"
-                className="w-[320px] sm:w-[460px] md:w-[540px] lg:w-[580px] h-auto object-contain animate-rotate-sway drop-shadow-2xl cursor-pointer"
+                className="w-[360px] sm:w-[540px] md:w-[640px] lg:w-[720px] max-w-full h-auto object-contain animate-rotate-sway drop-shadow-2xl cursor-pointer ml-auto"
               />
 
             </div>
